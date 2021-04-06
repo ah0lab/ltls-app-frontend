@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { SoundComponent } from './sound.component';
+import { LtlsSoundTestComponent } from './ltls-sound-test.component';
 
-describe('SoundComponent', () => {
-  let component: SoundComponent;
-  let fixture: ComponentFixture<SoundComponent>;
+describe('LtlsSoundTestComponent', () => {
+  let component: LtlsSoundTestComponent;
+  let fixture: ComponentFixture<LtlsSoundTestComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SoundComponent ],
+      declarations: [ LtlsSoundTestComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SoundComponent);
+    fixture = TestBed.createComponent(LtlsSoundTestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

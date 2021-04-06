@@ -6,7 +6,7 @@ import { ResourceLoaderService } from '../../services/resource-loader.service';
   templateUrl: './ltls-sound-test.component.html',
   styleUrls: ['./ltls-sound-test.component.scss'],
 })
-export class SoundComponent implements OnInit {
+export class LtlsSoundTestComponent implements OnInit {
 
   audio: any;
   public played: boolean;
