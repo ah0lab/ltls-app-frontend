@@ -18,7 +18,26 @@ describe('LtlsSoundTestComponent', () => {
     fixture.detectChanges();
   }));
 
-  it('should create', () => {
+  describe('playSound()', () => {
+    it('should play sound', () => {
+
+    });
+  });
+
+  describe('canHear()', () => {
+    it('should display a message', () => {
+
+    });
+  });
+
+  describe('cannotHear()', () => {
+    it('should display a tip with a message', () => {
+
+    });
+  });
+
+
+  it('should display 3 buttons after sound plays', () => {
     expect(component).toBeTruthy();
   });
 });

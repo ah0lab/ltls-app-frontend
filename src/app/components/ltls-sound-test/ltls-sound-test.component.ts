@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ResourceLoaderService } from '../../services/resource-loader.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-sound',
@@ -8,33 +9,45 @@ import { ResourceLoaderService } from '../../services/resource-loader.service';
 })
 export class LtlsSoundTestComponent implements OnInit {
 
-  audio: any;
-  public played: boolean;
-  soundFile: string;
-  hear: boolean;
+  audio: HTMLAudioElement;
+  wasPlayed: boolean;
+  soundName: string;
+  wasHeard: boolean;
 
-  constructor(private resource: ResourceLoaderService) { }
+  constructor(private resource: ResourceLoaderService,
+              private alertController: AlertController) { }
 
   ngOnInit() {
-    this.soundFile = 'cow';
+    this.soundName = 'cow';
     this.audio = new Audio();
-    this.audio.src = this.resource.returnSoundFile(this.soundFile);
+    this.audio.src = this.resource.returnSoundFile(this.soundName);
     this.audio.load();
-    this.played = false;
-
+    this.wasPlayed = false;
   }
 
   playSound(){
     this.audio.play();
-    this.played = true;
+    this.wasPlayed = true;
   }
 
-  canHear(){
-    this.hear = true;
+   async canHear() {
+    const alert = await this.alertController.create({
+      header: 'You heard it!',
+      message: 'We\'ve recorded this for you to look at later',
+      buttons: ['Continue']
+    });
+    await alert.present();
+    this.wasHeard = true;
   }
 
-  cannotHear(){
-    this.hear = false;
+  async cannotHear(){
+    const alert = await this.alertController.create({
+      header: 'You couldn\'t hear it!',
+      message: 'Here is a tip for next time',
+      buttons: ['Continue']
+    });
+    await alert.present();
+    this.wasHeard = false;
   }
 
 }
