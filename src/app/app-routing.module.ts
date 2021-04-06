@@ -11,6 +11,11 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'playsound',
+    loadChildren: () => import('./playsound/playsound.module').then( m => m.PlaysoundPageModule)
+  },
+
 ];
 
 @NgModule({
