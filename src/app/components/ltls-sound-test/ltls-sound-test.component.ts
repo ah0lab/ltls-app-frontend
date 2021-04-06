@@ -15,17 +15,30 @@ export class LtlsSoundTestComponent implements OnInit {
   wasHeard: boolean;
 
   constructor(private resource: ResourceLoaderService,
-              private alertController: AlertController) { }
+              public alertController: AlertController) { }
 
   ngOnInit() {
     this.soundName = 'cow';
     this.audio = new Audio();
     this.audio.src = this.resource.returnSoundFile(this.soundName);
-    this.audio.load();
+    if (this.audio.src === null) {
+      this.soundNotFound();
+    } else {
+      this.audio.load();
+    }
     this.wasPlayed = false;
   }
 
-  playSound(){
+  async soundNotFound() {
+    const alert = await this.alertController.create({
+      header: 'Unable to loud sound',
+      message: 'Please try again later',
+      buttons: ['Continue']
+    });
+    await alert.present();
+  }
+
+  playSound() {
     this.audio.play();
     this.wasPlayed = true;
   }

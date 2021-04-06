@@ -19,25 +19,44 @@ describe('LtlsSoundTestComponent', () => {
   }));
 
   describe('playSound()', () => {
-    it('should play sound', () => {
+    it('should play audio sound', () => {
+      spyOn(component.audio, 'play');
 
+      component.playSound();
+
+      expect(component.audio.play).toHaveBeenCalled();
     });
   });
 
   describe('canHear()', () => {
     it('should display a message', () => {
+      // Figure out a better way to test this
+      spyOn(component.alertController, 'create');
 
+      component.canHear();
+
+      // TODO Figure out a better way to test for this
+      expect(component.alertController.create).toHaveBeenCalled();
     });
   });
 
   describe('cannotHear()', () => {
     it('should display a tip with a message', () => {
+      spyOn(component.alertController, 'create');
 
+      component.cannotHear();
+
+      expect(component.alertController.create).toHaveBeenCalled();
     });
   });
 
 
   it('should display 3 buttons after sound plays', () => {
-    expect(component).toBeTruthy();
+    component.playSound();
+    fixture.detectChanges();
+
+    const buttons = fixture.nativeElement.querySelectorAll('ion-button');
+
+    expect(buttons.length).toEqual(3);
   });
 });
