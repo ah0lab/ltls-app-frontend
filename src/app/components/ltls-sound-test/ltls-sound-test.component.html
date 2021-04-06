@@ -1,3 +1,16 @@
-<p>
-  ltls-sound-test works!
-</p>
+<ion-item *ngIf="!played">
+  <h1>The sound played is going to be "Moo"</h1>
+
+  <p>Please press the button when you are ready to begin</p>
+  
+  <button (click) = "playSound()">Play Sound</button>
+</ion-item>
+
+<ion-item *ngIf="played">
+<h1>Did you hear that?</h1>
+
+<button (click) = "canHear()">Yes</button>
+<button (click) = "cannotHear()">No</button>
+<button (click) = "playSound()">Play Again</button>
+</ion-item>
+
