@@ -1,3 +1,33 @@
-<p>
-  view-tips works!
-</p>
+
+  <ion-card color="light" >
+      <ion-button color="dark" (click)="toggleApp()" ion-button expand="full">App Tips</ion-button><br>
+      <ion-card-content *ngIf="flagApp">
+        <ion-list *ngFor="let tip of tipApp" color = "light">
+          <ion-label color="dark">{{tip}}</ion-label>
+          <ion-item></ion-item>
+        </ion-list>
+      </ion-card-content>
+  </ion-card>
+  <br>
+
+  <ion-card color="light">
+    <ion-button color="dark" (click)="toggleParent()" ion-button expand="full">Parent Tips</ion-button><br>
+    <ion-card-content *ngIf="flagParent">
+      <ion-list *ngFor="let tip of tipParent" color = "light">
+        <ion-label color="dark">{{tip}}</ion-label>
+        <ion-item></ion-item>
+      </ion-list>
+    </ion-card-content>
+</ion-card>
+<br>
+<ion-card color="light">
+  <ion-button color="dark" (click)="toggleHear()" ion-button expand="full" >Hearing Tips</ion-button><br>
+  <ion-card-content *ngIf="flagHear">
+    <ion-list *ngFor="let tip of tipHear" color = "light">
+      <ion-label color="dark">{{tip}}</ion-label>
+      <ion-item></ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>
+
+
