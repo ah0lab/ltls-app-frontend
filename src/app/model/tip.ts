@@ -1,6 +1,6 @@
-import {TIP_CATEGORIES} from './TipCategory';
+import {TIP_CATEGORIES} from './tip-category';
 
 export interface Tip {
-  Catagory: TIP_CATEGORIES;
+  Category: TIP_CATEGORIES;
   Text: string;
 }

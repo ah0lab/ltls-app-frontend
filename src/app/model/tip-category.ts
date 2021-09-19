@@ -1,4 +1,4 @@
-const TIP_CATEGORY = {
+export const TIP_CATEGORY = {
   APP: 0,
   PARENT: 1,
   HEARING: 2

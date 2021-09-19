@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TIP_CATEGORY } from '../../model/tip-category';
+import { TipRetrieverService } from '../../services/tip-retriever.service';
+import { Tip } from '../../model/tip';
 
 @Component({
   selector: 'app-view-tips',
@@ -11,21 +14,35 @@ export class ViewTipsComponent implements OnInit {
   flagParent: boolean;
   flagHear: boolean;
 
-  tipApp: string[];
-  tipParent: string[];
-  tipHear: string[];
+  tipApp: Tip[] = [];
+  tipParent: Tip[] = [];
+  tipHear: Tip[] = [];
 
 
-  constructor() { }
+  constructor(private tips: TipRetrieverService) { }
 
   ngOnInit() {
+    this.tips.loadTipData().subscribe(tip => {
+      console.log(tip);
+      switch (tip.Category) {
+        case TIP_CATEGORY.APP: {
+          this.tipApp.push(tip);
+          break;
+        }
+        case TIP_CATEGORY.PARENT: {
+          this.tipParent.push(tip);
+          break;
+        }
+        case TIP_CATEGORY.HEARING: {
+          this.tipHear.push(tip);
+          break;
+        }
+      }
+    });
+
     this.flagApp = false;
     this.flagParent = false;
     this.flagHear = false;
-
-    this.tipApp = ['This is app tip 1', 'this is app tip 2!'];
-    this.tipParent = ['This is a tip for parents using the app!', 'Another tip for the parents :)'];
-    this.tipHear = ['Try moving the phone closer!', 'Try turning up the sound on your device!'];
   }
 
   toggleApp(){
