@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { TipsPageRoutingModule } from './tips-routing.module';
 
 import { TipsPage } from './tips.page';
+import { ViewTipsComponent } from 'src/app/components/view-tips/view-tips.component';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TipsPageRoutingModule
+    TipsPageRoutingModule,
   ],
-  declarations: [TipsPage]
+  declarations: [TipsPage, ViewTipsComponent]
 })
 export class TipsPageModule {}
