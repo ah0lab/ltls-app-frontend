@@ -33,7 +33,6 @@ export class ViewTipsComponent implements OnInit {
 
   ngOnInit() {
     this.tips.loadTipData().subscribe(tip => {
-      console.log(tip);
       switch (tip.Category) {
         case TIP_CATEGORY.APP: {
           this.tipApp.push(tip);
