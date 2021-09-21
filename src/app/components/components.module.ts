@@ -4,10 +4,11 @@ import { LoginComponent } from './login/login.component';
 import {IonicModule} from '@ionic/angular';
 import {FormsModule} from '@angular/forms';
 import {LtlsSoundTestComponent} from './ltls-sound-test/ltls-sound-test.component';
+import { ViewTipsComponent } from './view-tips/view-tips.component';
 
 
 @NgModule({
-  declarations: [LoginComponent, LtlsSoundTestComponent],
+  declarations: [LoginComponent, LtlsSoundTestComponent, ViewTipsComponent],
   imports: [
     CommonModule,
     IonicModule,
@@ -15,7 +16,8 @@ import {LtlsSoundTestComponent} from './ltls-sound-test/ltls-sound-test.componen
   ],
   exports: [
     LoginComponent,
-    LtlsSoundTestComponent
+    LtlsSoundTestComponent,
+    ViewTipsComponent
   ]
 })
 export class ComponentsModule { }

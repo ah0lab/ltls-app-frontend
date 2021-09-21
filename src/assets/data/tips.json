@@ -1,0 +1,22 @@
+[
+  {
+    "Category": 0,
+    "Text": "This is an app tip!"
+  },
+  {
+    "Category": 0,
+    "Text": "This is another app tip!"
+  },
+  {
+    "Category": 1,
+    "Text": "This is tip a tip for a parent!"
+  },
+  {
+    "Category": 2,
+    "Text": "This is a hearing tip"
+  },
+  {
+    "Category": 2,
+    "Text": "This is another hearing tip"
+  }
+]
