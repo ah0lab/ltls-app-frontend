@@ -1,9 +1,18 @@
-<ion-header>
   <ion-toolbar>
-    <ion-title>main-menu</ion-title>
+    <ion-title>Menu</ion-title>
   </ion-toolbar>
-</ion-header>
 
 <ion-content>
-
+  <ion-tabs>
+    <ion-tab-bar slot="top">
+      <ion-tab-button tab="learn-sound" selected="true">
+        <ion-icon name="triangle"></ion-icon>
+        <ion-label>Learn Sound</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="tips">
+        <ion-icon name="square"></ion-icon>
+        <ion-label>View Tips</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>

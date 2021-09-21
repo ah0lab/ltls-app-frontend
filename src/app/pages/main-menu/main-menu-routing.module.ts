@@ -6,16 +6,18 @@ import { MainMenuPage } from './main-menu.page';
 const routes: Routes = [
   {
     path: '',
-    component: MainMenuPage
+    component: MainMenuPage,
+    children: [
+      {
+        path: 'learn-sound',
+        loadChildren: () => import('./learn-sound/learn-sound.module').then( m => m.LearnSoundPageModule)
+      },
+      {
+        path: 'tips',
+        loadChildren: () => import('./tips/tips.module').then( m => m.TipsPageModule)
+      }
+    ]
   },
-  {
-    path: 'learn-sound',
-    loadChildren: () => import('./learn-sound/learn-sound.module').then( m => m.LearnSoundPageModule)
-  },
-  {
-    path: 'tips',
-    loadChildren: () => import('./tips/tips.module').then( m => m.TipsPageModule)
-  }
 ];
 
 @NgModule({
