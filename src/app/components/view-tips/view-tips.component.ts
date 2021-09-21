@@ -14,8 +14,18 @@ export class ViewTipsComponent implements OnInit {
   flagParent: boolean;
   flagHear: boolean;
 
-  tipApp: Tip[] = [];
-  tipParent: Tip[] = [];
+  tipApp: Tip[] = [
+    {
+      Category: 0,
+      Text: "This is an app tip!"
+    }
+  ];
+  tipParent: Tip[] = [
+    {
+      Category: 0,
+      Text: "This is a Parent Tip!"
+    }
+  ];
   tipHear: Tip[] = [];
 
 
