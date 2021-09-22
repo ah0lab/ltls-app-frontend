@@ -3,6 +3,7 @@ import { User } from '../../model/user';
 import { AuthenticatorService } from '../../services/authenticator.service';
 import {AuthToken} from '../../model/auth-token';
 import {AuthError} from '../../model/auth-error';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   authToken: AuthToken;
   authErrors: AuthError[];
 
-  constructor(public auth: AuthenticatorService) { }
+  constructor(public auth: AuthenticatorService, private route: Router) { }
 
   public authenticateUser() {
     this.authErrors = [];
@@ -40,7 +41,14 @@ export class LoginComponent implements OnInit {
     }
 
     this.authErrors = this.auth.Authenticate(this.user);
+    this.tabs();
   }
+
+  public tabs(){
+    this.route.navigate(['/tabs']);
+  }
+
+  
 
   ngOnInit() {
     this.auth.authResponse.subscribe( authToken => this.authToken = authToken );
