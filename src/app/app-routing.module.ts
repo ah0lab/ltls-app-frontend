@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'tabs',
-    loadChildren: () => import('./pages/main-menu/main-menu-routing.module').then(m=>m.MainMenuPageRoutingModule)
+    loadChildren: () => import('./pages/main-menu/main-menu.module').then(m=>m.MainMenuPageModule)
   },
 ];
 
