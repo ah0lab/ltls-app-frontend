@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-learn-sound',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LearnSoundPage implements OnInit {
 
-  constructor() { }
+  constructor(private route: Router) { }
 
   ngOnInit() {
+  }
+
+  
+  public toListen(){
+    this.route.navigate(['/sound']);
   }
 
 }

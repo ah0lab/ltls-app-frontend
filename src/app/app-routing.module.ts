@@ -15,6 +15,13 @@ const routes: Routes = [
     path: 'tabs',
     loadChildren: () => import('./pages/main-menu/main-menu.module').then(m=>m.MainMenuPageModule)
   },
+  {
+    path: 'sound',
+    loadChildren: () => import('./pages/playsound/playsound.module').then( m => m.PlaysoundPageModule)
+  },
+
+  
+
 ];
 
 @NgModule({
