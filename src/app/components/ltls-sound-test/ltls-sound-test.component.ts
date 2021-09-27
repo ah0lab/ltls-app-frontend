@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ResourceLoaderService } from '../../services/resource-loader.service';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sound',
@@ -15,7 +16,7 @@ export class LtlsSoundTestComponent implements OnInit {
   wasHeard: boolean;
 
   constructor(private resource: ResourceLoaderService,
-              public alertController: AlertController) { }
+              public alertController: AlertController, private route: Router) { }
 
   ngOnInit() {
     this.soundName = 'cow';
@@ -51,6 +52,7 @@ export class LtlsSoundTestComponent implements OnInit {
     });
     await alert.present();
     this.wasHeard = true;
+    this.route.navigate(['/sound2']);
   }
 
   async cannotHear(){

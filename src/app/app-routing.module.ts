@@ -19,6 +19,11 @@ const routes: Routes = [
     path: 'sound',
     loadChildren: () => import('./pages/playsound/playsound.module').then( m => m.PlaysoundPageModule)
   },
+  {
+    path: 'sound2',
+    loadChildren: () => import('./pages/playsoundcat/playsoundcat.module').then( m => m.PlaysoundcatPageModule)
+  },
+
 
   
 

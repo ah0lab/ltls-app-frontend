@@ -9,10 +9,8 @@ export class ResourceLoaderService {
   constructor() { }
 
   returnSoundFile(sound: string){
-    if (sound === 'cow') {
+  
       return `../../assets/${sound}.mp3`;
-    } else {
-      return null;
-    }
+
   }
 }
