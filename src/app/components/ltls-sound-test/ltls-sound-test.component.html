@@ -1,11 +1,12 @@
   <ion-item class="sound-img">
     <ion-grid>
       <ion-row class="ion-justify-content-center">
-        <ion-img src="../../assets/cow.png"></ion-img>
+        <ion-img *ngIf="!wasHeard" src="../../assets/cloud.png"></ion-img>
+        <ion-img *ngIf="wasHeard" src="../../assets/cow.png"></ion-img>
       </ion-row>
       <ion-row class="ion-justify-content-center">
         <ion-label size="large">
-          <h3>Moooo!</h3>
+          <h3 *ngIf = "wasHeard">Mooo!</h3>
         </ion-label>
       </ion-row>
     </ion-grid>
@@ -18,7 +19,7 @@
         <ion-label>Get ready to listen!</ion-label>
       </ion-row>
       <ion-row class="ion-justify-content-center">
-        <ion-button (click)="playSound()">Play Sound</ion-button>
+        <ion-button (click)="playSound()">Listen!</ion-button>
       </ion-row>
     </ion-grid>
   </ion-item>
@@ -26,17 +27,18 @@
   <ion-item *ngIf="wasPlayed">
     <ion-grid>
       <ion-row class="ion-justify-content-center">
-        <ion-label>Did you hear that?</ion-label>
+        <ion-label *ngIf="!wasHeard">Did you hear that?</ion-label>
       </ion-row>
       <ion-row class="ion-justify-content-center">
-        <ion-button size="large" (click)="playSound()">Play Again</ion-button>
+        <ion-button size="large" (click)="playSound()">Listen Again!</ion-button>
       </ion-row>
       <ion-row class="ion-justify-content-center">
-          <ion-button size="large" (click)="canHear()">I Hear It!</ion-button>
+          <ion-button size="large" (click)="canHear()">I heard that!</ion-button>
       </ion-row>
       <ion-row class="ion-justify-content-center">
-          <ion-button size="large" (click)="cannotHear()">I Can't Hear It!</ion-button>
+          <ion-button size="large" (click)="cannotHear()">I didn't hear that!</ion-button>
       </ion-row>
     </ion-grid>
   </ion-item>
 </ion-item-group>
+

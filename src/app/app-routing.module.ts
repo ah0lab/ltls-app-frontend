@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'tutorial',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
