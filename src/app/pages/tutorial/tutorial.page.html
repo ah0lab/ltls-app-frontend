@@ -1,9 +1,20 @@
 <ion-content>
   <ion-slides pager="true">
     <ion-slide *ngFor="let content of slideContent">
-      <app-tutorial-slide-content [text]="content.text"
-                          [image]="content.image"
-                          [link]="content.link"></app-tutorial-slide-content>
+      <ng-container *ngIf="content.route == null; else routing">
+        <app-tutorial-slide-content
+                                    [title]="content.title"
+                                    [paragraph]="content.paragraph"
+                                    [headerImage]="content.headerImage"></app-tutorial-slide-content>
+      </ng-container>
+      <ng-template #routing>
+      <app-tutorial-slide-content
+                                  [title]="content.title"
+                                  [paragraph]="content.paragraph"
+                                  [headerImage]="content.headerImage"
+                                  [routePath]="content.route.path"
+                                  [linkText]="content.route.linkText"></app-tutorial-slide-content>
+      </ng-template>
     </ion-slide>
   </ion-slides>
 </ion-content>

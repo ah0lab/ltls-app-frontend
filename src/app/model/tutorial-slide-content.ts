@@ -1,5 +1,9 @@
 export interface TutorialSlideContent {
-  text: string;
-  image?: string;
-  link?: string;
+  title: string;
+  paragraph: string;
+  headerImage: string;
+  route?: {
+    path: string,
+    linkText: string
+  };
 }

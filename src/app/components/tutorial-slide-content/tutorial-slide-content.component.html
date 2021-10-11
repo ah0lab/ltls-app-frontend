@@ -1,3 +1,13 @@
-<h1>{{text}}</h1>
-<h2 *ngIf="image.length != 0">{{image}}</h2>
-<h3 *ngIf="link.length != 0">{{link}}</h3>
+<img *ngIf="headerImage.length != 0"
+       src="{{headerImage}}"
+       alt="header image"
+       class="tutorial-image" />
+<ion-header>
+  <ion-text color="primary">
+    <h1 class="ion-text-lg-center"> {{title}} </h1>
+  </ion-text>
+</ion-header>
+<ion-item>
+  <p class="tutorial-paragraph ion-text-center ion-padding-horizontal" *ngIf="paragraph.length != 0">{{paragraph}}</p>
+</ion-item>
+<a *ngIf="routePath.length != 0" [routerLink]="routePath">{{linkText}}</a>
