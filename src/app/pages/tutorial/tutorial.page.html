@@ -1,0 +1,9 @@
+<ion-content>
+  <ion-slides pager="true">
+    <ion-slide *ngFor="let content of slideContent">
+      <app-tutorial-slide-content [text]="content.text"
+                          [image]="content.image"
+                          [link]="content.link"></app-tutorial-slide-content>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
