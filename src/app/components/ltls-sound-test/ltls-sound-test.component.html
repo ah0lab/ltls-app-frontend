@@ -30,13 +30,13 @@
         <ion-label *ngIf="!wasHeard">Did you hear that?</ion-label>
       </ion-row>
       <ion-row class="ion-justify-content-center">
-        <ion-button size="large" (click)="playSound()">Listen Again!</ion-button>
+        <ion-button size="large" (click)="playSound()" color="primary">Listen Again!</ion-button>
       </ion-row>
       <ion-row class="ion-justify-content-center">
-          <ion-button size="large" (click)="canHear()">I heard that!</ion-button>
+          <ion-button size="large" (click)="canHear()" color="secondary">I heard that!</ion-button>
       </ion-row>
       <ion-row class="ion-justify-content-center">
-          <ion-button size="large" (click)="cannotHear()">I didn't hear that!</ion-button>
+          <ion-button size="large" (click)="cannotHear()" color="tertiary">I didn't hear that!</ion-button>
       </ion-row>
     </ion-grid>
   </ion-item>
