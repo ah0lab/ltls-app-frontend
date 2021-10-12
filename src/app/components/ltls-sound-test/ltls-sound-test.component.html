@@ -24,7 +24,7 @@
     </ion-grid>
   </ion-item>
 
-  <ion-item *ngIf="wasPlayed">
+  <ion-item *ngIf="wasPlayed == true && wasHeardClicked == false">
     <ion-grid>
       <ion-row class="ion-justify-content-center">
         <ion-label *ngIf="!wasHeard">Did you hear that?</ion-label>
@@ -37,6 +37,23 @@
       </ion-row>
       <ion-row class="ion-justify-content-center">
           <ion-button size="large" (click)="cannotHear()" color="tertiary">I didn't hear that!</ion-button>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+
+  <ion-item *ngIf="wasPlayed == true && wasHeardClicked == true">
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-label *ngIf="!wasHeard">Did you hear that?</ion-label>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-button size="large" (click)="showStratTip()" color="primary">Strategy Tip</ion-button>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+          <ion-button size="large" (click)="showLslTip()" color="secondary">LSL Tip</ion-button>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+          <ion-button size="large" (click)="goBack()" color="tertiary">Back</ion-button>
       </ion-row>
     </ion-grid>
   </ion-item>

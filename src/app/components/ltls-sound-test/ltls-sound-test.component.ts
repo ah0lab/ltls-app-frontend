@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ResourceLoaderService } from '../../services/resource-loader.service';
 import { AlertController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
+import { ModalLSLPage } from 'src/app/pages/modal-lsl/modal-lsl.page';
+import { ModalStratPage } from 'src/app/pages/modal-strat/modal-strat.page';
 
 @Component({
   selector: 'app-sound',
@@ -13,9 +17,10 @@ export class LtlsSoundTestComponent implements OnInit {
   wasPlayed: boolean;
   soundName: string;
   wasHeard: boolean;
+  wasHeardClicked: boolean;
 
   constructor(private resource: ResourceLoaderService,
-              public alertController: AlertController) { }
+              public alertController: AlertController, public toastController: ToastController, public modalController: ModalController) { }
 
   ngOnInit() {
     this.soundName = 'cow';
@@ -27,6 +32,7 @@ export class LtlsSoundTestComponent implements OnInit {
       this.audio.load();
     }
     this.wasPlayed = false;
+    this.wasHeardClicked = false;
   }
 
   async soundNotFound() {
@@ -44,13 +50,13 @@ export class LtlsSoundTestComponent implements OnInit {
   }
 
    async canHear() {
-    const alert = await this.alertController.create({
-      header: 'You heard it!',
-      message: 'We\'ve recorded this for you to look at later',
-      buttons: ['Continue']
-    });
-    await alert.present();
+      const toast = await this.toastController.create({
+        message: 'Hearing data saved',
+        duration: 2000
+      });
+      toast.present();
     this.wasHeard = true;
+    this.wasHeardClicked = true;
   }
 
   async cannotHear(){
@@ -61,6 +67,30 @@ export class LtlsSoundTestComponent implements OnInit {
     });
     await alert.present();
     this.wasHeard = false;
+  }
+
+  async goBack(){
+    this.wasHeardClicked = false;
+  }
+
+  async showStratTip(){
+    const modal = await this.modalController.create({
+        component: ModalStratPage
+    });
+    return await modal.present();
+
+  }
+
+  async showLslTip(){
+    const modal = await this.modalController.create({
+      component: ModalLSLPage
+  });
+  return await modal.present();
+
+  }
+
+  async showHearTips(){
+
   }
 
 }

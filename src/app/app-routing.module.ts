@@ -18,7 +18,15 @@ const routes: Routes = [
   {
     path: 'tutorial',
     loadChildren: () => import('./pages/tutorial/tutorial.module').then( m => m.TutorialPageModule)
+  },  {
+    path: 'modal-lsl',
+    loadChildren: () => import('./pages/modal-lsl/modal-lsl.module').then( m => m.ModalLSLPageModule)
   },
+  {
+    path: 'modal-strat',
+    loadChildren: () => import('./pages/modal-strat/modal-strat.module').then( m => m.ModalStratPageModule)
+  },
+
 ];
 
 @NgModule({
