@@ -18,6 +18,7 @@ export class LtlsSoundTestComponent implements OnInit {
   soundName: string;
   wasHeard: boolean;
   wasHeardClicked: boolean;
+  nextSound : boolean;
 
   constructor(private resource: ResourceLoaderService,
               public alertController: AlertController, public toastController: ToastController, public modalController: ModalController) { }
@@ -33,6 +34,7 @@ export class LtlsSoundTestComponent implements OnInit {
     }
     this.wasPlayed = false;
     this.wasHeardClicked = false;
+    this.nextSound = false;
   }
 
   async soundNotFound() {
@@ -57,16 +59,19 @@ export class LtlsSoundTestComponent implements OnInit {
       toast.present();
     this.wasHeard = true;
     this.wasHeardClicked = true;
+    this.nextSound = true;
   }
 
   async cannotHear(){
-    const alert = await this.alertController.create({
-      header: 'You couldn\'t hear it!',
-      message: 'Here is a tip for next time',
-      buttons: ['Continue']
+    const toast = await this.toastController.create({
+      message: 'Here is a tip to help you hear better!',
+      duration: 5000
     });
-    await alert.present();
+    toast.present();
+    this.showStratTip();
     this.wasHeard = false;
+
+
   }
 
   async goBack(){
@@ -89,8 +94,5 @@ export class LtlsSoundTestComponent implements OnInit {
 
   }
 
-  async showHearTips(){
-
-  }
 
 }

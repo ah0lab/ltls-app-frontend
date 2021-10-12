@@ -57,5 +57,13 @@
       </ion-row>
     </ion-grid>
   </ion-item>
+
+  <ion-item *ngIf="wasPlayed == true && nextSound == true">
+    <ion-grid>
+      <ion-row>
+          <ion-button size="large" color="secondary" >Next LTLS</ion-button>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
 </ion-item-group>
 
