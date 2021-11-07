@@ -1,0 +1,14 @@
+<ion-item class="sound-img">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-img *ngIf="!reveal" [src]="visualMask"></ion-img>
+      <ion-img *ngIf="reveal" [src]="visualSource">
+      </ion-img>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-label size="large">
+        <h3 *ngIf="reveal">{{visualText}}</h3>
+      </ion-label>
+    </ion-row>
+  </ion-grid>
+</ion-item>

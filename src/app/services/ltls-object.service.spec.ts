@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ResourceLoaderService } from './resource-loader.service';
+import { LtlsObjectService } from './ltls-object.service';
 
 describe('ResourceLoaderService', () => {
-  let service: ResourceLoaderService;
+  let service: LtlsObjectService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ResourceLoaderService);
+    service = TestBed.inject(LtlsObjectService);
   });
 
   it('should be created', () => {

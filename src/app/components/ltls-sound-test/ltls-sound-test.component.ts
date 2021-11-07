@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ResourceLoaderService } from '../../services/resource-loader.service';
+import { LtlsObjectService } from '../../services/ltls-object.service';
 import { AlertController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
@@ -20,7 +20,7 @@ export class LtlsSoundTestComponent implements OnInit {
   wasHeardClicked: boolean;
   nextSound : boolean;
 
-  constructor(private resource: ResourceLoaderService,
+  constructor(private resource: LtlsObjectService,
               public alertController: AlertController, public toastController: ToastController, public modalController: ModalController) { }
 
   ngOnInit() {

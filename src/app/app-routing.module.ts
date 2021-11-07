@@ -12,19 +12,24 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'ltls-interaction',
     pathMatch: 'full'
   },
   {
     path: 'tutorial',
     loadChildren: () => import('./pages/tutorial/tutorial.module').then( m => m.TutorialPageModule)
-  },  {
+  },
+  {
     path: 'modal-lsl',
     loadChildren: () => import('./pages/modal-lsl/modal-lsl.module').then( m => m.ModalLSLPageModule)
   },
   {
     path: 'modal-strat',
     loadChildren: () => import('./pages/modal-strat/modal-strat.module').then( m => m.ModalStratPageModule)
+  },
+  {
+    path: 'ltls-interaction',
+    loadChildren: () => import('./pages/ltls-interaction/ltls-interaction.module').then( m => m.LtlsInteractionPageModule)
   },
 
 ];

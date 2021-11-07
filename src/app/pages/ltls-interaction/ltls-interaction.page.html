@@ -1,0 +1,56 @@
+<app-ltls-sound-visual [visualSource]="currentSound.visualSource"
+                       [visualText]="currentSound.visualText"
+                       [reveal]="currentSound.wasPlayed">
+</app-ltls-sound-visual>
+
+<ion-item-group>
+  <ion-item *ngIf="!currentSound.wasPlayed">
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-label>Get ready to listen!</ion-label>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-button
+          (click)="currentSound.play(mediaPlayer)">Listen!</ion-button>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+
+  <ion-item *ngIf="currentSound.wasPlayed && !currentSound.wasHeard">
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-label *ngIf="!currentSound.wasHeard">Did you hear that?</ion-label>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-button size="large" (click)="currentSound.play(this.mediaPlayer)" color="primary">Listen Again!</ion-button>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-button size="large" (click)="currentSound.wasHeard = true" color="secondary">I heard that!</ion-button>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-button size="large" (click)="currentSound.wasHeard = false" color="tertiary">I didn't hear that!</ion-button>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+
+  <ion-item *ngIf="currentSound.wasPlayed && currentSound.wasHeard">
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-label *ngIf="!currentSound.wasHeard">Did you hear that?</ion-label>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-button size="large" (click)="showStrategy()" color="primary">Strategy Tip</ion-button>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-button size="large" (click)="showLslTip()" color="secondary">LSL Tip</ion-button>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-button size="large" (click)="restartInteraction()" color="tertiary">Back</ion-button>
+      </ion-row>
+      <ion-row>
+        <ion-button size="large" (click)="nextInteraction()" color="secondary" >Next LTLS</ion-button>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+</ion-item-group>
+
