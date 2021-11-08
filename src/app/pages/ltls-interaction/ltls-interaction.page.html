@@ -1,9 +1,9 @@
-<app-ltls-sound-visual [visualSource]="currentSound.visualSource"
+<ion-item-group>
+  
+  <app-ltls-sound-visual [visualSource]="currentSound.visualSource"
                        [visualText]="currentSound.visualText"
                        [reveal]="currentSound.wasPlayed">
 </app-ltls-sound-visual>
-
-<ion-item-group>
   <ion-item *ngIf="!currentSound.wasPlayed">
     <ion-grid>
       <ion-row class="ion-justify-content-center">
