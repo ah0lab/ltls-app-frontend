@@ -8,6 +8,7 @@ import {ModalStratPage} from '../modal-strat/modal-strat.page';
 import {LtlsSound} from '../../model/ltls-sound';
 import {INTERACTION_TYPE, LTLS_INTERACTION_TYPE} from '../../model/ltls-interaction-type';
 import {LtlsFormant} from '../../model/ltls-formant';
+import {Router} from '@angular/router';
 import { Router } from '@angular/router';
 import { SaveDataService } from '../../services/save-data.service';
 
@@ -72,10 +73,13 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
 
   public currentSound: LtlsSound;
   public wasHeard: boolean;
+  public isFinalSound = false;
 
   constructor(private ltlsObjectLoader: LtlsObjectService,
               private alertController: AlertController,
               private toastController: ToastController,
+              private modalController: ModalController,
+              private router: Router) { }
               private modalController: ModalController,
               private dataSaver: SaveDataService,
               private route: Router) { }
@@ -90,10 +94,22 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
     }
     this.mediaPlayer = new Audio();
     this.currentSound = this.ltlsObjects[this.currentIndex].media as LtlsSound;
+
+    if (this.currentIndex === this.ltlsObjects.length - 1) {
+      this.isFinalSound = true;
+    }
   }
 
   endInteraction() {
-    // TODO: exit back to main menu
+    // Reset everything and exit back to main menu
+    for(let object of this.ltlsObjects) {
+      object.media.wasPlayed = false;
+      object.media.wasHeard = false;
+    }
+    this.currentIndex = 0;
+    this.currentSound = this.ltlsObjects[this.currentIndex].media as LtlsSound;
+
+    this.router.navigate(['learn-sounds']);
   }
 
   playInteraction() {
@@ -102,20 +118,13 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
   }
 
   nextInteraction() {
-    if(this.currentIndex >= 2){
-      this.route.navigateByUrl('/history');
+    if (!this.isFinalSound) {
+      this.currentIndex += 1;
+      this.currentSound = this.ltlsObjects[this.currentIndex].media as LtlsSound;
+      if (this.currentIndex === this.ltlsObjects.length - 1) {
+        this.isFinalSound = true;
+      }
     }
-
-    //Save the name of the sound to LocalStorage, with a value of its index (0, 1, 2, etc)
-    console.log(this.currentSound.mediaName)
-    localStorage.setItem(String(this.currentIndex), this.currentSound.mediaName);
-    this.currentIndex += 1;
-
-    // TODO: Change to next LTLS Object
-    this.currentSound = this.ltlsObjects[this.currentIndex].media as LtlsSound;
-    //console.log(this.currentSound);
-
-
   }
 
   async showLslTip() {
@@ -166,10 +175,5 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
     await this.showStrategy();
     this.wasHeard = false;
   }
-
-  // async getSoundName(): Promise<void>{
-  //   let name = await this.currentSound.mediaName
-  //   console.log(name);
-  // }
 
 }

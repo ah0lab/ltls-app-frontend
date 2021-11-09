@@ -1,4 +1,6 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {fs} from 'fs-extra';
+import {Router} from '@angular/router';
+import {ComponentFixture, fakeAsync, TestBed, tick, waitForAsync} from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { TutorialSlideContentComponent } from './tutorial-slide-content.component';
@@ -6,6 +8,8 @@ import { TutorialSlideContentComponent } from './tutorial-slide-content.componen
 describe('TutorialSlideContentComponent', () => {
   let component: TutorialSlideContentComponent;
   let fixture: ComponentFixture<TutorialSlideContentComponent>;
+  // tslint:disable-next-line:prefer-const
+  let router: Router;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -18,7 +22,21 @@ describe('TutorialSlideContentComponent', () => {
     fixture.detectChanges();
   }));
 
-  it('should create', () => {
+  it('should load', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should only play once', () => {
+    expect(false).toBeTruthy();
+  });
+
+  it('should load image', () => {
+    expect(fs.pathExists('../../../assets/img/hearing.png')).toBeTruthy();
+  });
+
+  it('should route to the main page', fakeAsync(() => {
+    router.navigate([component.routePath]);
+    tick();
+    expect(location.pathname).toBe('/home');
+  }));
 });

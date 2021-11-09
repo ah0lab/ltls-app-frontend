@@ -10,25 +10,28 @@ export class TutorialPage implements OnInit {
 
   slideContent: TutorialSlideContent[] = [
     {
-      text: 'Slide 1',
-      image: '',
-      link: ''
+      title: 'Welcome!',
+      paragraph: 'Vivamus vitae tempor lorem, non feugiat nunc. Donec eget tempus massa, eget interdum tellus.',
+      headerImage: '../../../assets/img/star.png'
     },
     {
-      text: 'Slide 2',
-      image: '',
-      link: ''
+      title: 'LTLS Sounds',
+      paragraph: 'Duis pellentesque pellentesque libero, id tincidunt nibh ullamcorper ac.',
+      headerImage: '../../../assets/img/sound-wave.png'
     },
     {
-      text: 'Slide 3',
-      image: '',
-      link: ''
+      title: 'Listen!',
+      paragraph: 'Praesent erat purus, semper vitae turpis in, mattis luctus mauris.',
+      headerImage: '../../../assets/img/hearing.png',
+      route: {
+        path: '/home',
+        linkText: 'Lets Go!'
+      }
     }
   ];
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }

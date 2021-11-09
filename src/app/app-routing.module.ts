@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'ltls-interaction',
+    redirectTo: 'tutorial',
     pathMatch: 'full'
   },
   {
@@ -32,10 +32,9 @@ const routes: Routes = [
     loadChildren: () => import('./pages/ltls-interaction/ltls-interaction.module').then( m => m.LtlsInteractionPageModule)
   },
   {
-    path: 'history',
-    loadChildren: () => import('./pages/history/history/history.module').then( m => m.HistoryPageModule)
+    path: 'learn-sounds',
+    loadChildren: () => import('./pages/learn-sounds/learn-sounds.module').then( m => m.LearnSoundsPageModule)
   },
-
 
 ];
 

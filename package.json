@@ -23,6 +23,8 @@
     "@ionic/angular": "^5.5.2",
     "@ionic/storage": "^3.0.6",
     "@ionic/storage-angular": "^3.0.6",
+    "fs": "^0.0.1-security",
+    "fs-extra": "^4.0.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
