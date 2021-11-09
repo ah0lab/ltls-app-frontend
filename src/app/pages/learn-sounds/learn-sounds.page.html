@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title size="large" class="ion-text-center">Learn Sounds</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-left">Beginning Grounds</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <p>Aenean ex felis, eleifend malesuada ante eget, vehicula molestie justo.</p>
+          </ion-col>
+          <ion-col>
+            <ion-button (click)="playSoundSet()">Play Sound</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>All Sounds</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <p>Phasellus scelerisque nulla vitae ipsum auctor, quis pharetra arcu ultricies.</p>
+          </ion-col>
+          <ion-col>
+            <ion-button (click)="gotoSoundListing()">View All</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Surprise</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <p>Phasellus scelerisque nulla vitae ipsum auctor, quis pharetra arcu ultricies.</p>
+          </ion-col>
+          <ion-col>
+            <ion-button (click)="gotoRandomSound()">Randomize</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>

@@ -8,6 +8,7 @@ import {ModalStratPage} from '../modal-strat/modal-strat.page';
 import {LtlsSound} from '../../model/ltls-sound';
 import {INTERACTION_TYPE, LTLS_INTERACTION_TYPE} from '../../model/ltls-interaction-type';
 import {LtlsFormant} from '../../model/ltls-formant';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-ltls-interaction',
@@ -70,11 +71,13 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
 
   public currentSound: LtlsSound;
   public wasHeard: boolean;
+  public isFinalSound = false;
 
   constructor(private ltlsObjectLoader: LtlsObjectService,
               private alertController: AlertController,
               private toastController: ToastController,
-              private modalController: ModalController) { }
+              private modalController: ModalController,
+              private router: Router) { }
 
   ngOnInit() {
     if (this.ltlsObjects.length === 0) {
@@ -86,10 +89,22 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
     }
     this.mediaPlayer = new Audio();
     this.currentSound = this.ltlsObjects[this.currentIndex].media as LtlsSound;
+
+    if (this.currentIndex === this.ltlsObjects.length - 1) {
+      this.isFinalSound = true;
+    }
   }
 
   endInteraction() {
-    // TODO: exit back to main menu
+    // Reset everything and exit back to main menu
+    for(let object of this.ltlsObjects) {
+      object.media.wasPlayed = false;
+      object.media.wasHeard = false;
+    }
+    this.currentIndex = 0;
+    this.currentSound = this.ltlsObjects[this.currentIndex].media as LtlsSound;
+
+    this.router.navigate(['learn-sounds']);
   }
 
   playInteraction() {
@@ -97,11 +112,13 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
   }
 
   nextInteraction() {
-    this.currentIndex += 1;
-
-    // TODO: Change to next LTLS Object
-    this.currentSound = this.ltlsObjects[this.currentIndex].media as LtlsSound;
-    console.log(this.currentSound);
+    if (!this.isFinalSound) {
+      this.currentIndex += 1;
+      this.currentSound = this.ltlsObjects[this.currentIndex].media as LtlsSound;
+      if (this.currentIndex === this.ltlsObjects.length - 1) {
+        this.isFinalSound = true;
+      }
+    }
   }
 
   async showLslTip() {
