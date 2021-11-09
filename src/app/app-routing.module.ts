@@ -31,6 +31,11 @@ const routes: Routes = [
     path: 'ltls-interaction',
     loadChildren: () => import('./pages/ltls-interaction/ltls-interaction.module').then( m => m.LtlsInteractionPageModule)
   },
+  {
+    path: 'history',
+    loadChildren: () => import('./pages/history/history/history.module').then( m => m.HistoryPageModule)
+  },
+
 
 ];
 

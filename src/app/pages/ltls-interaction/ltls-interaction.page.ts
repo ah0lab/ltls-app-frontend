@@ -8,6 +8,7 @@ import {ModalStratPage} from '../modal-strat/modal-strat.page';
 import {LtlsSound} from '../../model/ltls-sound';
 import {INTERACTION_TYPE, LTLS_INTERACTION_TYPE} from '../../model/ltls-interaction-type';
 import {LtlsFormant} from '../../model/ltls-formant';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ltls-interaction',
@@ -74,7 +75,8 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
   constructor(private ltlsObjectLoader: LtlsObjectService,
               private alertController: AlertController,
               private toastController: ToastController,
-              private modalController: ModalController) { }
+              private modalController: ModalController,
+              private route: Router) { }
 
   ngOnInit() {
     if (this.ltlsObjects.length === 0) {
@@ -94,14 +96,24 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
 
   playInteraction() {
     this.currentSound.play(this.mediaPlayer);
+
   }
 
   nextInteraction() {
+    if(this.currentIndex >= 2){
+      this.route.navigateByUrl('/history');
+    }
+
+    //Save the name of the sound to LocalStorage, with a value of its index (0, 1, 2, etc)
+    console.log(this.currentSound.mediaName)
+    localStorage.setItem(String(this.currentIndex), this.currentSound.mediaName);
     this.currentIndex += 1;
 
     // TODO: Change to next LTLS Object
     this.currentSound = this.ltlsObjects[this.currentIndex].media as LtlsSound;
-    console.log(this.currentSound);
+    //console.log(this.currentSound);
+
+
   }
 
   async showLslTip() {
@@ -130,6 +142,7 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
    */
   // TODO: Rename result to something else maybe? Seems ambiguous
   async wasReceptive(result: boolean) {
+    let keys: string;
     let msg: string;
     let dur: number;
     if (result) {
@@ -149,5 +162,10 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
     await this.showStrategy();
     this.wasHeard = false;
   }
+
+  // async getSoundName(): Promise<void>{
+  //   let name = await this.currentSound.mediaName
+  //   console.log(name);
+  // }
 
 }
