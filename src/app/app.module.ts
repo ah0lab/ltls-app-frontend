@@ -14,10 +14,7 @@ import { LtlsSoundRepository } from './repository/ltls-sounds.repository';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot({
-    name: '_savedSoundsdb',
-    driverOrder: [Drivers.LocalStorage, Drivers.IndexedDB]
-  })],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot()],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

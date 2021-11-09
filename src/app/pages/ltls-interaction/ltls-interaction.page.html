@@ -28,10 +28,10 @@
           <ion-button size="large" (click)="currentSound.play(this.mediaPlayer)" color="primary">Listen Again!</ion-button>
         </ion-row>
         <ion-row class="ion-justify-content-center">
-          <ion-button size="large" (click)="currentSound.wasHeard = true" color="secondary">I heard that!</ion-button>
+          <ion-button size="large" (click)="wasReceptive(true)" color="secondary">I heard that!</ion-button>
         </ion-row>
         <ion-row class="ion-justify-content-center">
-          <ion-button size="large" (click)="currentSound.wasHeard = false" color="tertiary">I didn't hear that!</ion-button>
+          <ion-button size="large" (click)="wasReceptive(false)" color="tertiary">I didn't hear that!</ion-button>
         </ion-row>
       </ion-grid>
     </ion-item>

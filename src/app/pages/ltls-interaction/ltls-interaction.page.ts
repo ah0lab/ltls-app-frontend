@@ -9,7 +9,6 @@ import {LtlsSound} from '../../model/ltls-sound';
 import {INTERACTION_TYPE, LTLS_INTERACTION_TYPE} from '../../model/ltls-interaction-type';
 import {LtlsFormant} from '../../model/ltls-formant';
 import {Router} from '@angular/router';
-import { Router } from '@angular/router';
 import { SaveDataService } from '../../services/save-data.service';
 
 @Component({
@@ -79,10 +78,8 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
               private alertController: AlertController,
               private toastController: ToastController,
               private modalController: ModalController,
-              private router: Router) { }
-              private modalController: ModalController,
               private dataSaver: SaveDataService,
-              private route: Router) { }
+              private router: Router) { }
 
   ngOnInit() {
     if (this.ltlsObjects.length === 0) {
@@ -158,13 +155,16 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
     let msg: string;
     let dur: number;
     if (result) {
+      console.log('saving data');
       this.dataSaver.saveResult(this.ltlsObjects[this.currentIndex]);
+      this.currentSound.wasHeard = true;
      msg = 'hearing data saved';
      dur = 2000;
      // TODO Record result here
     } else {
       msg = 'Hear Better Tip';
       dur = 40000;
+      this.currentSound.wasHeard = false;
     }
 
     const toast = await this.toastController.create({
@@ -173,7 +173,7 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
     });
     await toast.present();
     await this.showStrategy();
-    this.wasHeard = false;
+
   }
 
 }

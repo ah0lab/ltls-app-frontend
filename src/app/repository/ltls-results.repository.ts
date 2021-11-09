@@ -7,20 +7,18 @@ import {LtlsSaveData} from '../model/ltls-save-data';
   providedIn: 'root'
 })
 export class LtlsResultsRepository {
-  private repo: Storage | null = null;
-
   constructor(private storage: Storage) {
-    this.init();
+    this.storage.create();
   }
 
   async init() {
+    console.log('Storage Initialized!');
     const storage = await this.storage.create();
-    this.repo = storage;
+    this.storage = storage;
   }
 
   public saveData(data: LtlsSaveData) {
-    console.log('Data Stored');
-    this.storage?.set(data.key, JSON.stringify(data.soundInfo));
+    this.storage.set(data.key, data.formantData);
   }
 
   public async loadData(): Promise<LtlsSaveData[]> {
@@ -32,7 +30,10 @@ export class LtlsResultsRepository {
     for (let key of keys) {
       this.storage.get(key).then(value => {
         console.log(value);
-        savedData.push(value);
+        savedData.push({
+          key,
+          formantData: value
+        });
       });
     }
     return savedData;

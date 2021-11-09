@@ -10,21 +10,26 @@ import {LtlsObject} from '../model/ltls-object';
   providedIn: 'root'
 })
 export class SaveDataService {
-  private data = new BehaviorSubject<LtlsSaveData>(null);
+  private data = new BehaviorSubject<LtlsSaveData>({
+    key: 'NA',
+    formantData: [new LtlsFormant(0, 0, 0)]
+  });
   public savedData = this.data.asObservable();
 
   constructor(private repo: LtlsResultsRepository) { }
 
   public saveResult(result: LtlsObject) {
+    this.repo.saveData({
+      key: result.media.mediaName,
+      formantData: result.formant
+    });
   }
 
   public saveResultSet(resultSet: LtlsObject[]) {
     for (let result of resultSet) {
       this.repo.saveData({
         key: result.media.mediaName,
-        soundInfo: {
-          formantData: result.formant
-        }
+        formantData: result.formant
       });
     }
   }
@@ -33,6 +38,8 @@ export class SaveDataService {
     this.repo.loadData().then((savedData) => {
       for (let result of savedData) {
         this.data.next(result);
+        console.log('pushing');
+        console.log(result);
       }
     }).catch(null);
   }

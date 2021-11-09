@@ -19,7 +19,7 @@ export class HomePage {
   }
 
   gotoHistoryPage() {
-    // TODO
+    this.router.navigate(['history']);
   }
 
   gotoSettingsPage() {

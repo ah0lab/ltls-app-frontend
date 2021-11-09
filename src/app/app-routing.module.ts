@@ -35,6 +35,10 @@ const routes: Routes = [
     path: 'learn-sounds',
     loadChildren: () => import('./pages/learn-sounds/learn-sounds.module').then( m => m.LearnSoundsPageModule)
   },
+  {
+    path: 'history',
+    loadChildren: () => import('./pages/history/history.module').then( m => m.HistoryPageModule)
+  }
 
 ];
 
