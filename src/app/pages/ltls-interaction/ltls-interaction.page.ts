@@ -97,17 +97,6 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
   }
 
   nextInteraction() {
-    /*
-    if (this.randomize) {
-      // Remove already played sounds from list
-      this.ltlsObjects =
-        this.ltlsObjects.splice(this.currentIndex, 1);
-
-      this.currentIndex =
-        Math.floor(Math.random() * (this.ltlsObjects.length));
-    } else {
-    }
-     */
     this.currentIndex += 1;
 
     // TODO: Change to next LTLS Object
@@ -146,6 +135,7 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
     if (result) {
      msg = 'hearing data saved';
      dur = 2000;
+     // TODO Record result here
     } else {
       msg = 'Hear Better Tip';
       dur = 40000;
