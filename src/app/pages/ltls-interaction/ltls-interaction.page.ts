@@ -9,6 +9,7 @@ import {LtlsSound} from '../../model/ltls-sound';
 import {INTERACTION_TYPE, LTLS_INTERACTION_TYPE} from '../../model/ltls-interaction-type';
 import {LtlsFormant} from '../../model/ltls-formant';
 import { Router } from '@angular/router';
+import { SaveDataService } from '../../services/save-data.service';
 
 @Component({
   selector: 'app-ltls-interaction',
@@ -76,6 +77,7 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
               private alertController: AlertController,
               private toastController: ToastController,
               private modalController: ModalController,
+              private dataSaver: SaveDataService,
               private route: Router) { }
 
   ngOnInit() {
@@ -142,10 +144,12 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
    */
   // TODO: Rename result to something else maybe? Seems ambiguous
   async wasReceptive(result: boolean) {
-    let keys: string;
+    this.wasHeard = result;
+
     let msg: string;
     let dur: number;
     if (result) {
+      this.dataSaver.saveResult(this.ltlsObjects[this.currentIndex]);
      msg = 'hearing data saved';
      dur = 2000;
      // TODO Record result here

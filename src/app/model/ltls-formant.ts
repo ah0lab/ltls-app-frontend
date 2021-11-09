@@ -1,8 +1,8 @@
 export class LtlsFormant {
   constructor(
-    private freqLow: number,
-    private freqHigh: number,
-    private intensity: number) { }
+    public freqLow: number,
+    public freqHigh: number,
+    public intensity: number) { }
 
   public equals(other: LtlsFormant): boolean {
     if (other.freqLow !== this.freqLow) { return false; }

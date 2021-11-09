@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SaveDataService } from '../../../services/save-data.service';
+import {LtlsSaveData} from '../../../model/ltls-save-data';
 
 @Component({
   selector: 'app-history',
@@ -7,16 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistoryPage implements OnInit {
 
-  constructor() { }
+  public historyRecords: LtlsSaveData[] = [];
+
+  constructor(private dataSaver: SaveDataService) { }
 
   ngOnInit() {
+    this.dataSaver.loadResults();
 
-    //Array to hold all localStorage Values
+    this.dataSaver.savedData.subscribe(data => {
+      this.historyRecords.push(data);
+    });
+
+    /*
     var sounds: string[] = this.allStorage();
     let test = "Test";
+     */
   }
 
   //Obtains all objects currently stored in localStorage
+  /*
   allStorage() {
 
     var values = [],
@@ -29,7 +40,5 @@ export class HistoryPage implements OnInit {
     }
     return values;
 }
-
-  
-
+   */
 }

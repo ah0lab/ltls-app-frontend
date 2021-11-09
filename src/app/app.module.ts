@@ -4,6 +4,9 @@ import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
+import {Drivers, Storage} from '@ionic/storage';
+import {IonicStorageModule } from '@ionic/storage-angular';
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LtlsSoundRepository } from './repository/ltls-sounds.repository';
@@ -11,7 +14,10 @@ import { LtlsSoundRepository } from './repository/ltls-sounds.repository';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot({
+    name: '_savedSoundsdb',
+    driverOrder: [Drivers.LocalStorage, Drivers.IndexedDB]
+  })],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
