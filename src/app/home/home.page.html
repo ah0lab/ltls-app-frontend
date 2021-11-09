@@ -2,11 +2,16 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+  <ion-header>
     <ion-toolbar>
-      <ion-title size="small">LTLS</ion-title>
+      <ion-title class="homepage-title" size="large" class="ion-text-center">Welcome</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-item-group>
+      <ion-button expand="block" size="large" (click)="gotoLearnSoundsPage()">Learn Sounds</ion-button>
+      <ion-button expand="block" size="large" (click)="gotoResourcesPage()">Resources</ion-button>
+      <ion-button expand="block" size="large" (click)="gotoHistoryPage()">History</ion-button>
+      <ion-button expand="block" size="large" (click)="gotoSettingsPage()">Settings</ion-button>
+  </ion-item-group>
 
-  <app-sound></app-sound>
 </ion-content>
