@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>history</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item-group>
+    <ion-item *ngFor="let record of historyRecords">
+          <ion-label>{{record.key.charAt(0).toUpperCase() + record.key.substr(1, record.key.length)}}</ion-label>
+            <ion-col *ngFor="let formant of record.formantData">
+              <p>{{formant.freqLow}}Hz - {{formant.freqHigh}}Hz @ {{formant.intensity}}</p>
+            </ion-col>
+    </ion-item>
+  </ion-item-group>
+
+</ion-content>
