@@ -7,9 +7,11 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class TutorialSlideContentComponent implements OnInit {
 
-  @Input() text: string;
-  @Input() image: string;
-  @Input() link: string;
+  @Input() title: string;
+  @Input() paragraph: string;
+  @Input() headerImage: string;
+  @Input() routePath = '';
+  @Input() linkText = '';
 
   constructor() { }
 
