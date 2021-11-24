@@ -11,8 +11,8 @@ export class LtlsSoundRepository {
     {
       id: 0,
       media: new LtlsSound('snake',
-        '../../assets/cow.mp3',
-        { src: '../../assets/snake.png' },
+        '../../assets/Sss/Sss_001_Snake.WAV',
+        { src: '../../assets/Sss/SnakeLTLS.png' },
         'Sss!'),
       tips: {
         strategy: {text: ' '},
@@ -30,7 +30,7 @@ export class LtlsSoundRepository {
         'Ahhh!'),
       tips: {
         strategy: {text: 'Move closer instead of speaking louder'},
-        lslTip: {text: 'Talk about the object before you shot it to the child'}
+        lslTip: {text: 'Talk about the object before you show it to the child'}
       },
       formant: [
         new LtlsFormant(768, 1030, 55),

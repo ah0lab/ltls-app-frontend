@@ -23,8 +23,8 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
     {
       id: 0,
       media: new LtlsSound('snake',
-        '../../assets/cow.mp3',
-        { src: '../../assets/snake.png' },
+        '../../assets/Sss/Sss_001_Snake.wav',
+        { src: '../../assets/Sss/SnakeLTLS.png' },
         'Sss!'),
       tips: {
         strategy: {text: ' '},
