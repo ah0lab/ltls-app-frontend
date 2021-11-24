@@ -1,19 +1,17 @@
 <ion-content>
   <ion-item-group>
-    <ion-item>
-      <app-ltls-sound-visual [visualSource]="currentSound.visualSource"
-                             [visualText]="currentSound.visualText"
-                             [reveal]="currentSound.wasPlayed">
-      </app-ltls-sound-visual>
-    </ion-item>
+    <app-ltls-sound-visual [visualSource]="currentSound.visualSource"
+                           [visualText]="currentSound.visualText"
+                           [reveal]="currentSound.wasPlayed">
+    </app-ltls-sound-visual>
 
     <ion-item *ngIf="!currentSound.wasPlayed">
       <ion-grid>
         <ion-row class="ion-justify-content-center">
-          <ion-label>Get ready to listen!</ion-label>
+          <ion-label mode="ios" color="primary"> Get ready to listen! </ion-label>
         </ion-row>
         <ion-row class="ion-justify-content-center">
-          <ion-button
+          <ion-button size="large"
             (click)="currentSound.play(mediaPlayer)">Listen!</ion-button>
         </ion-row>
       </ion-grid>
