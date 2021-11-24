@@ -14,13 +14,23 @@ export class LtlsObjectService {
 
   // set variable of the string
   // assets/<variable>.mp3
+  private data: BehaviorSubject<LtlsObject>;
   constructor(private soundRepo: LtlsSoundRepository) { }
 
   public loadObjects() {
+    console.log('test')
     // @ts-ignore
-    for (let ltlsObject: LtlsObject of this.soundRepo.getSounds()) {
-      this.objectList.next(ltlsObject);
-    }
+    // for (let ltlsObject: LtlsObject of this.soundRepo.getSounds()) {
+    //   this.objectList.next(ltlsObject);
+    // }
+
+    this.soundRepo.getSounds().then((loadedSounds) =>{
+      for (let result of loadedSounds){
+        this.objectList.next(result);
+        console.log(this.objectList);
+        console.log(result);
+      }
+    })
   }
 
   // TODO: Refactor this out when loadObjects is working
@@ -31,4 +41,15 @@ export class LtlsObjectService {
       return null;
     }
   }
+
+  
+  // public loadResults() {
+  //   this.repo.loadData().then((savedData) => {
+  //     for (let result of savedData) {
+  //       this.data.next(result);
+  //       console.log('pushing');
+  //       console.log(result);
+  //     }
+  //   }).catch(null);
+  // }
 }
