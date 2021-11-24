@@ -20,50 +20,61 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
 
   @Input() interactionType: LTLS_INTERACTION_TYPE = INTERACTION_TYPE.SOUND;
   @Input() ltlsObjects: LtlsObject[] = [
-    // {
-    //   id: 0,
-    //   media: new LtlsSound('snake',
-    //     '../../assets/Sss/Snake1.mp3',
-    //     { src: '../../assets/Sss/SnakeLTLS.png' },
-    //     'Sss!'),
-    //   tips: {
-    //     strategy: {text: ' '},
-    //     lslTip: {text: ' '}
-    //   },
-    //   formant: [
-    //     new LtlsFormant(5000, 6000, 30)
-    //   ]
-    // },
-    // {
-    //   id: 1,
-    //   media: new LtlsSound('airplane',
-    //     '../../assets/cow.mp3',
-    //     { src: '../../assets/airplane.png' },
-    //     'Ahhh!'),
-    //   tips: {
-    //     strategy: {text: 'Move closer instead of speaking louder'},
-    //     lslTip: {text: 'Talk about the object before you shot it to the child'}
-    //   },
-    //   formant: [
-    //     new LtlsFormant(768, 1030, 55),
-    //     new LtlsFormant(1370, 1551, 55)
-    //   ]
-    // },
-    // {
-    //   id: 2,
-    //   media: new LtlsSound('train',
-    //     '../../assets/cow.mp3',
-    //     {src: '../../assets/train.png'},
-    //     'Ooo!'),
-    //   tips: {
-    //     strategy: {text: ' '},
-    //     lslTip: {text: ' '}
-    //   },
-    //   formant: [
-    //     new LtlsFormant(439, 460, 55),
-    //     new LtlsFormant(1105, 1170, 55)
-    //   ]
-    // }
+    {
+      id: 0,
+      media: new LtlsSound('snake',
+        '../../assets/Sss/Snake1.mp3',
+        { src: '../../assets/Sss/SnakeLTLS.png' },
+        'Sss!'),
+      tips: {
+        strategy: {text: ' '},
+        lslTip: {text: ' '}
+      },
+      formant: [
+        new LtlsFormant(5000, 6000, 30)
+      ]
+    },
+    {
+      id: 1,
+      media: new LtlsSound('airplane',
+        '../../assets/cow.mp3',
+        { src: '../../assets/airplane.png' },
+        'Ahhh!'),
+      tips: {
+        strategy: {text: 'Move closer instead of speaking louder'},
+        lslTip: {text: 'Talk about the object before you shot it to the child'}
+      },
+      formant: [
+        new LtlsFormant(768, 1030, 55),
+        new LtlsFormant(1370, 1551, 55)
+      ]
+    },
+    {
+      id: 2,
+      media: new LtlsSound('train',
+        '../../assets/cow.mp3',
+        {src: '../../assets/train.png'},
+        'Ooo!'),
+      tips: {
+        strategy: {text: ' '},
+        lslTip: {text: ' '}
+      },
+      formant: [
+        new LtlsFormant(439, 460, 55),
+        new LtlsFormant(1105, 1170, 55)
+      ]
+    },
+    {
+      id: 3,
+      media: new LtlsSound('ice cream', '../../assets/cow.mp3',
+      {src: '../../assets/Mmm/IcecreamLTLS.png'},
+      'Mmm!'),
+      formant:[],
+      tips:{
+        strategy:{text: ' '},
+        lslTip:{text: ' '}
+      }
+    }
   ];
 
   @Input() randomize = false;
@@ -157,7 +168,7 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
     let dur: number;
     if (result) {
       console.log('saving data');
-      this.dataSaver.saveResult(this.ltlsObjects[this.currentIndex]);
+      this.dataSaver.saveResult(this.ltlsObjects[this.currentIndex], new Date());
       this.currentSound.wasHeard = true;
      msg = 'hearing data saved';
      dur = 2000;

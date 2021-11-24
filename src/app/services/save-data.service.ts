@@ -12,24 +12,27 @@ import {LtlsObject} from '../model/ltls-object';
 export class SaveDataService {
   private data = new BehaviorSubject<LtlsSaveData>({
     key: 'NA',
-    formantData: [new LtlsFormant(0, 0, 0)]
+    formantData: [new LtlsFormant(0, 0, 0)],
+    date: null
   });
   public savedData = this.data.asObservable();
 
   constructor(private repo: LtlsResultsRepository) { }
 
-  public saveResult(result: LtlsObject) {
+  public saveResult(result: LtlsObject, saveDate: Date) {
     this.repo.saveData({
       key: result.media.mediaName,
-      formantData: result.formant
+      formantData: result.formant,
+      date: saveDate
     });
   }
 
-  public saveResultSet(resultSet: LtlsObject[]) {
+  public saveResultSet(resultSet: LtlsObject[], saveDate: Date) {
     for (let result of resultSet) {
       this.repo.saveData({
         key: result.media.mediaName,
-        formantData: result.formant
+        formantData: result.formant,
+        date: saveDate
       });
     }
   }

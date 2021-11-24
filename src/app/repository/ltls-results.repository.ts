@@ -32,7 +32,8 @@ export class LtlsResultsRepository {
         console.log(value);
         savedData.push({
           key,
-          formantData: value
+          formantData: value,
+          date: new Date()
         });
       });
     }
