@@ -64,7 +64,6 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
 
   playInteraction() {
     this.currentSound.play(this.mediaPlayer);
-
   }
 
   nextInteraction() {
@@ -101,23 +100,31 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
    *  Instead of cannot hear and can hear, we can use
    *  one function and pass the result of the test
    */
-  // TODO: Rename result to something else maybe? Seems ambiguous
   async wasReceptive(result: boolean) {
-    this.wasHeard = result;
+    this.currentSound.wasHeard = result;
+
+    // Save data to local storage
+    this.dataSaver.saveResult({
+      key: this.currentSound.mediaName,
+      datePerformed: new Date(),
+      wasHeard: this.currentSound.wasHeard
+    });
 
     let msg: string;
     let dur: number;
     if (result) {
-      console.log('saving data');
-      this.dataSaver.saveResult(this.ltlsObjects[this.currentIndex]);
-      this.currentSound.wasHeard = true;
       msg = 'hearing data saved';
       dur = 2000;
-     // TODO Record result here
     } else {
+
+      // Advance to next sound automatically
+      if (this.isFinalSound) {
+        this.endInteraction();
+      } else {
+        this.nextInteraction();
+      }
       msg = 'Hear Better Tip';
       dur = 40000;
-      this.currentSound.wasHeard = false;
     }
 
     const toast = await this.toastController.create({
@@ -126,7 +133,6 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
     });
     await toast.present();
     await this.showStrategy();
-
   }
 
 }

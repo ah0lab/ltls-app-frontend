@@ -18,7 +18,7 @@ export class LtlsResultsRepository {
   }
 
   public saveData(data: LtlsSaveData) {
-    this.storage.set(data.key, data.formantData);
+    this.storage.set(data.key, data);
   }
 
   public async loadData(): Promise<LtlsSaveData[]> {
@@ -32,8 +32,8 @@ export class LtlsResultsRepository {
         console.log(value);
         savedData.push({
           key,
-          formantData: value,
-          date: new Date()
+          wasHeard: value.wasHeard,
+          datePerformed: value.datePerformed
         });
       });
     }
