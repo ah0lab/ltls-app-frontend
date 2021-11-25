@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>history</ion-title>
+    <ion-title>Session History</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,10 +11,15 @@
       <ion-list-header>
         <ion-label>{{date}}</ion-label>
       </ion-list-header>
-      <ion-item [color]="(record.wasHeard) ? 'success' : 'danger'" *ngFor="let record of historyRecords.get(date)">
-            <ion-label class="ion-text-center">
-              {{record.key.charAt(0).toUpperCase() + record.key.substr(1, record.key.length)}}
-            </ion-label>
+      <ion-item *ngFor="let record of historyRecords.get(date)"
+                [color]="(record.wasHeard) ? 'success' : 'danger'">
+        <ion-label>
+          <ion-icon name="checkmark-circle-outline" *ngIf="record.wasHeard; else NotHeardIcon"></ion-icon>
+          <ng-template #NotHeardIcon>
+            <ion-icon name="close-circle-outline"></ion-icon>
+          </ng-template>
+          {{record.key.charAt(0).toUpperCase() + record.key.substr(1, record.key.length)}}
+        </ion-label>
       </ion-item>
     </ion-list>
   </div>

@@ -11,12 +11,18 @@ export class LtlsResultsRepository {
     this.storage.create();
   }
 
+  /*
+   * Initialize Local storage
+   */
   async init() {
     console.log('Storage Initialized!');
     const storage = await this.storage.create();
     this.storage = storage;
   }
 
+  /*
+   * Save data to local storage
+   */
   public saveData(data: LtlsSaveData) {
     this.storage.set(data.key, data);
   }
@@ -27,7 +33,8 @@ export class LtlsResultsRepository {
 
     const savedData: LtlsSaveData[] = [];
 
-    for (let key of keys) {
+    for (const key of keys) {
+      // Retrieve data from local storage
       this.storage.get(key).then(value => {
         console.log(value);
         savedData.push({

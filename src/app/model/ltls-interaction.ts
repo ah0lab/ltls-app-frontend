@@ -2,9 +2,10 @@ export interface LtlsInteraction {
   showLslTip();
   showStrategy();
   nextInteraction();
+  // Close the interaction
   endInteraction();
-  // Whether or not the listener was receptive
-  // to the test. Used to be cannotHear/ canHear
+  // Action taken whether or not the listener was receptive
+  //  to the test
   wasReceptive(result: boolean);
   restartInteraction();
 }

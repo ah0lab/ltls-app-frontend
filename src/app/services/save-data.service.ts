@@ -23,13 +23,6 @@ export class SaveDataService {
 
   public loadResults() {
     this.repo.loadData().then((savedData) => {
-      /*
-      for (let result of savedData) {
-        this.data.next(result);
-        console.log('pushing');
-        console.log(result);
-      }
-      */
       this.data.next(savedData);
     }).catch(null);
   }

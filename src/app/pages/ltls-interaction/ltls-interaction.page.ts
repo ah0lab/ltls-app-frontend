@@ -18,7 +18,6 @@ import { SaveDataService } from '../../services/save-data.service';
 })
 export class LtlsInteractionPage implements OnInit, LtlsInteraction {
 
-  @Input() interactionType: LTLS_INTERACTION_TYPE = INTERACTION_TYPE.SOUND;
   @Input() ltlsObjects: LtlsObject[] = [];
   @Input() randomize = false;
   @Input() mediaPlayer: HTMLMediaElement;
@@ -26,7 +25,6 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
   private currentIndex = 0;
 
   public currentSound: LtlsSound;
-  public wasHeard: boolean;
   public isFinalSound = false;
 
   constructor(private ltlsObjectLoader: LtlsObjectService,
@@ -37,6 +35,7 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
               private router: Router) { }
 
   ngOnInit() {
+    // Was this component already given a list from the input?
     if (this.ltlsObjects.length === 0) {
       this.ltlsObjectLoader.loadObjects();
       this.ltlsObjectLoader.ltlsObjects.subscribe(sounds => this.ltlsObjects = sounds);
@@ -52,7 +51,7 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
 
   endInteraction() {
     // Reset everything and exit back to main menu
-    for(let object of this.ltlsObjects) {
+    for (const object of this.ltlsObjects) {
       object.media.wasPlayed = false;
       object.media.wasHeard = false;
     }
@@ -70,6 +69,7 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
     if (!this.isFinalSound) {
       this.currentIndex += 1;
       this.currentSound = this.ltlsObjects[this.currentIndex].media as LtlsSound;
+      // Check if this is our final interaction
       if (this.currentIndex === this.ltlsObjects.length - 1) {
         this.isFinalSound = true;
       }
@@ -83,6 +83,9 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
     return await modal.present();
   }
 
+  /*
+   * Displays a strategy tip
+   */
   async showStrategy() {
     const modal = await this.modalController.create({
       component: ModalStratPage
@@ -90,15 +93,15 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
     return await modal.present();
   }
 
-// This replaced goBack()
   restartInteraction() {
     this.currentSound.wasPlayed = false;
     this.currentSound.wasHeard = false;
   }
 
   /*
-   *  Instead of cannot hear and can hear, we can use
-   *  one function and pass the result of the test
+   *  Is called whenever the user selects "CanHear" or "CantHear".
+   *  Passing the boolean value true or false for each selection
+   *  respectively.
    */
   async wasReceptive(result: boolean) {
     this.currentSound.wasHeard = result;
@@ -110,21 +113,17 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
       wasHeard: this.currentSound.wasHeard
     });
 
-    let msg: string;
-    let dur: number;
-    if (result) {
-      msg = 'hearing data saved';
-      dur = 2000;
-    } else {
+    const msg = 'hearing data saved';
+    const dur = 2000;
 
-      // Advance to next sound automatically
+    if (!result) {
+      // Advance to next sound and show a hear better tip
       if (this.isFinalSound) {
         this.endInteraction();
       } else {
         this.nextInteraction();
       }
-      msg = 'Hear Better Tip';
-      dur = 40000;
+      await this.showStrategy();
     }
 
     const toast = await this.toastController.create({
@@ -132,7 +131,6 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
       duration: dur
     });
     await toast.present();
-    await this.showStrategy();
   }
 
 }
