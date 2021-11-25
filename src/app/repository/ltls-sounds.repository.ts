@@ -11,7 +11,7 @@ export class LtlsSoundRepository {
     {
       id: 0,
       media: new LtlsSound('snake',
-        '../../assets/Sss/Sss_001_Snake.WAV',
+        '../../assets/Sss/Snake1.mp3',
         { src: '../../assets/Sss/SnakeLTLS.png' },
         'Sss!'),
       tips: {
@@ -25,8 +25,8 @@ export class LtlsSoundRepository {
     {
       id: 1,
       media: new LtlsSound('airplane',
-        '../../assets/cow.mp3',
-        { src: '../../assets/airplane.png' },
+        '../../assets/Ahhhh/Airplane1.mp3',
+        { src: '../../assets/Ahhhh/Airplane.png' },
         'Ahhh!'),
       tips: {
         strategy: {text: 'Move closer instead of speaking louder'},
@@ -40,8 +40,8 @@ export class LtlsSoundRepository {
     {
       id: 2,
       media: new LtlsSound('train',
-        '../../assets/cow.mp3',
-        { src: '../../assets/train.png' },
+        '../../assets/Oooo/Train1.mp3',
+        { src: '../../assets/Oooo/TrainLTLS.png' },
         'Ooo!'),
       tips: {
         strategy: {text: ' '},
@@ -51,7 +51,53 @@ export class LtlsSoundRepository {
         new LtlsFormant(439, 460, 55),
         new LtlsFormant(1105, 1170, 55)
       ]
+    },
+    {
+      id: 3,
+      media: new LtlsSound('IceCream',
+        '../../assets/Mmm/IceCream1.mp3',
+        { src: '../../assets/Mmm/IcecreamLTLS.png' },
+        'Mmm!'),
+      tips: {
+        strategy: {text: 'Move closer instead of speaking louder'},
+        lslTip: {text: 'Talk about the object before you show it to the child'}
+      },
+      formant: [
+        new LtlsFormant(768, 1030, 55),
+        new LtlsFormant(1370, 1551, 55)
+      ]
+    },
+    {
+      id: 4,
+      media: new LtlsSound('baby',
+        '../../assets/Sh/Baby1.mp3',
+        { src: '../../assets/Sh/LTLS.png' },
+        'Sh!'),
+      tips: {
+        strategy: {text: 'Move closer instead of speaking louder'},
+        lslTip: {text: 'Talk about the object before you show it to the child'}
+      },
+      formant: [
+        new LtlsFormant(768, 1030, 55),
+        new LtlsFormant(1370, 1551, 55)
+      ]
+    },
+    {
+      id: 5,
+      media: new LtlsSound('rollercoaster',
+        '../../assets/Whee/RollerCoaster1.mp3',
+        { src: '../../assets/Whee/Wheee.png' },
+        'Wheee!'),
+      tips: {
+        strategy: {text: 'Move closer instead of speaking louder'},
+        lslTip: {text: 'Talk about the object before you show it to the child'}
+      },
+      formant: [
+        new LtlsFormant(768, 1030, 55),
+        new LtlsFormant(1370, 1551, 55)
+      ]
     }
+    
   ];
 
   public getSounds(): LtlsObject[] {
