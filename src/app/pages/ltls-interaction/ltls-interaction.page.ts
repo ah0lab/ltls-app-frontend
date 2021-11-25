@@ -66,15 +66,19 @@ export class LtlsInteractionPage implements OnInit, LtlsInteraction {
     },
     {
       id: 3,
-      media: new LtlsSound('ice cream', '../../assets/cow.mp3',
-      {src: '../../assets/Mmm/IcecreamLTLS.png'},
-      'Mmm!'),
-      formant:[],
-      tips:{
-        strategy:{text: ' '},
-        lslTip:{text: ' '}
-      }
-    }
+      media: new LtlsSound('train',
+        '../../assets/cow.mp3',
+        {src: '../../assets/train.png'},
+        'Ooo!'),
+      tips: {
+        strategy: {text: ' '},
+        lslTip: {text: ' '}
+      },
+      formant: [
+        new LtlsFormant(439, 460, 55),
+        new LtlsFormant(1105, 1170, 55)
+      ]
+    },
   ];
 
   @Input() randomize = false;
