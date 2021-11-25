@@ -9,7 +9,7 @@ import {LtlsObject} from '../model/ltls-object';
   providedIn: 'root'
 })
 export class LtlsObjectService {
-  private objectList = new BehaviorSubject<LtlsObject>(null);
+  private objectList = new BehaviorSubject<LtlsObject[]>(null);
   public ltlsObjects = this.objectList.asObservable();
 
   // set variable of the string
@@ -18,19 +18,24 @@ export class LtlsObjectService {
   constructor(private soundRepo: LtlsSoundRepository) { }
 
   public loadObjects() {
-    console.log('test')
+    console.log('test');
     // @ts-ignore
     // for (let ltlsObject: LtlsObject of this.soundRepo.getSounds()) {
     //   this.objectList.next(ltlsObject);
     // }
 
-    this.soundRepo.getSounds().then((loadedSounds) =>{
+    const sounds: LtlsObject[] = this.soundRepo.getSounds();
+    this.objectList.next(sounds);
+    console.log(sounds);
+    /*
+    this.soundRepo.getSounds().then((loadedSounds) => {
       for (let result of loadedSounds){
         this.objectList.next(result);
         console.log(this.objectList);
         console.log(result);
       }
-    })
+    });
+   */
   }
 
   // TODO: Refactor this out when loadObjects is working
@@ -42,7 +47,7 @@ export class LtlsObjectService {
     }
   }
 
-  
+
   // public loadResults() {
   //   this.repo.loadData().then((savedData) => {
   //     for (let result of savedData) {

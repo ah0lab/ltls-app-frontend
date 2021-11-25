@@ -19,20 +19,20 @@ export class SaveDataService {
 
   constructor(private repo: LtlsResultsRepository) { }
 
-  public saveResult(result: LtlsObject, saveDate: Date) {
+  public saveResult(result: LtlsObject) {
     this.repo.saveData({
       key: result.media.mediaName,
       formantData: result.formant,
-      date: saveDate
+      date: new Date()
     });
   }
 
-  public saveResultSet(resultSet: LtlsObject[], saveDate: Date) {
+  public saveResultSet(resultSet: LtlsObject[]) {
     for (let result of resultSet) {
       this.repo.saveData({
         key: result.media.mediaName,
         formantData: result.formant,
-        date: saveDate
+        date: new Date()
       });
     }
   }
